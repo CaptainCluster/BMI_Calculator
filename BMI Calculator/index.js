@@ -81,7 +81,7 @@ function determineObesityClass(bodyMassIndex){
     //There are three different obesity classes (class 3 = severe obesity)
     //This function is used when the BMI indicated the user is obese
     let userObesityClass = "Not determined";
-    if(bodyMassIndex >= 30 && BMI < 35){
+    if(bodyMassIndex >= 30 && bodyMassIndex < 35){
         userObesityClass = "Class 1";
     } else if(bodyMassIndex >= 35 && bodyMassIndex < 40){
         userObesityClass = "Class 2";
