@@ -9,7 +9,7 @@ if (document.readyState !== "loading") {
 }
 
 function mainFunction(){
-    var unit = "metric"; //We have metric units by default
+    let unit = "metric"; //We have metric units by default
     determineUnitParameters(unit);
     const submitButton = document.getElementById("submitButton");
     submitButton.addEventListener("click", function(){
@@ -17,18 +17,22 @@ function mainFunction(){
     });
     const metricButton = document.getElementById("buttonMetric");
     metricButton.addEventListener("click", function(){
-        if(unit != "metric"){
-            unit = "metric";
-            determineUnitParameters(unit);
-        }
+        unit = changeMeasurementUnit(unit, "metric");
     });
     const USButton = document.getElementById("buttonUS");
     USButton.addEventListener("click", function(){
-        if(unit != "US"){
-            unit = "US";
-            determineUnitParameters(unit);
-        }
+        unit = changeMeasurementUnit(unit, "US");
     });
+}
+
+function changeMeasurementUnit(currentUnit, newUnit){
+    //Checks whether the unit user wants to use is not currently being used.
+    //If it's not, this function makes the change.
+    if(currentUnit != newUnit){
+        currentUnit = newUnit;
+        determineUnitParameters(newUnit);
+    }
+    return currentUnit;
 }
 
 function calculateBMI(unit){
@@ -46,6 +50,8 @@ function calculateBMI(unit){
         multiplierFeetToInches = 12;
         divider = 1;
     }
+    //The following 2 if statements alter the values of height variables, if the inputs are empty.
+    //Reason: If user's height is, for instance, precisely 2 meters, he doesn't have to type in 0 centimeters
     if(userHeightLesser == ""){
         userHeightLesser = 0;
     }
@@ -92,6 +98,7 @@ function determineObesityClass(bodyMassIndex){
 }
 
 function determineUnitParameters(unit){
+    //Makes sure changeMeasuresHTML gets valid parameters
     if(unit == "metric"){
         changeMeasuresHTML(["[m]", "[cm]", "[kg]"]);
     } else{
@@ -101,9 +108,9 @@ function determineUnitParameters(unit){
 
 function changeMeasuresHTML(unitList){
     //Changing the unit symbols in the HTML to make the program more easy to use
-    var heightText = document.getElementById("height");
-    var lesserHeightText = document.getElementById("lesserHeight");
-    var weightText = document.getElementById("weight");
+    let heightText = document.getElementById("height");
+    let lesserHeightText = document.getElementById("lesserHeight");
+    let weightText = document.getElementById("weight");
 
     heightText.textContent = unitList[0];
     lesserHeightText.textContent = unitList[1];
