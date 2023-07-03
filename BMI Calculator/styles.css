@@ -1,7 +1,38 @@
-.inputArea{
-    width: 80px;
-    text-align: center;
-}
-.unitButton{
-    width: 60px;
-}
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  div {
+    margin-bottom: 10px;
+  }
+  
+  .unitButton {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .inputArea {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  #submitButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #results {
+    font-size: 24px;
+    color: red;
+  }
