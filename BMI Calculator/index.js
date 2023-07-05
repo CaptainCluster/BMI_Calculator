@@ -9,7 +9,7 @@ if (document.readyState !== "loading") {
 }
 
 function mainFunction(){
-    let unit = "metric"; //We have metric units by default
+    var unit = "metric"; //We have metric units by default
     determineUnitParameters(unit);
     const submitButton = document.getElementById("submitButton");
     submitButton.addEventListener("click", function(){
@@ -17,22 +17,18 @@ function mainFunction(){
     });
     const metricButton = document.getElementById("buttonMetric");
     metricButton.addEventListener("click", function(){
-        unit = changeMeasurementUnit(unit, "metric");
+        if(unit != "metric"){
+            unit = "metric";
+            determineUnitParameters(unit);
+        }
     });
     const USButton = document.getElementById("buttonUS");
     USButton.addEventListener("click", function(){
-        unit = changeMeasurementUnit(unit, "US");
+        if(unit != "US"){
+            unit = "US";
+            determineUnitParameters(unit);
+        }
     });
-}
-
-function changeMeasurementUnit(currentUnit, newUnit){
-    //Checks whether the unit user wants to use is not currently being used.
-    //If it's not, this function makes the change.
-    if(currentUnit != newUnit){
-        currentUnit = newUnit;
-        determineUnitParameters(newUnit);
-    }
-    return currentUnit;
 }
 
 function calculateBMI(unit){
@@ -50,8 +46,6 @@ function calculateBMI(unit){
         multiplierFeetToInches = 12;
         divider = 1;
     }
-    //The following 2 if statements alter the values of height variables, if the inputs are empty.
-    //Reason: If user's height is, for instance, precisely 2 meters, he doesn't have to type in 0 centimeters
     if(userHeightLesser == ""){
         userHeightLesser = 0;
     }
@@ -61,11 +55,11 @@ function calculateBMI(unit){
     if(userHeightLesser + userHeightUpper != 0){
         const userHeight = parseInt(userHeightUpper) * multiplierFeetToInches + parseInt(userHeightLesser)/divider;
         const bodyMassIndex = (userWeight / userHeight ** 2) * multiplier;
-        analyzeBMI(bodyMassIndex.toFixed(1));
+        analyzeBMI(bodyMassIndex.toFixed(1), userHeight, multiplier);
     }
 }
 
-function analyzeBMI(bodyMassIndex){
+function analyzeBMI(bodyMassIndex, height, multiplier){
     //Making conclusions based on the BMI and getting them ready for display
     //For instance, a BMI of 31 means we will tell the user they are obese,
     let userStatus = "Not determined";
@@ -81,6 +75,7 @@ function analyzeBMI(bodyMassIndex){
         userObesityClass = determineObesityClass(bodyMassIndex);
     }
     displayResults(bodyMassIndex, userStatus, userObesityClass);
+    giveAppropriateWeight(height, userStatus, multiplier);
 }
 
 function determineObesityClass(bodyMassIndex){
@@ -98,7 +93,6 @@ function determineObesityClass(bodyMassIndex){
 }
 
 function determineUnitParameters(unit){
-    //Makes sure changeMeasuresHTML gets valid parameters
     if(unit == "metric"){
         changeMeasuresHTML(["[m]", "[cm]", "[kg]"]);
     } else{
@@ -108,9 +102,9 @@ function determineUnitParameters(unit){
 
 function changeMeasuresHTML(unitList){
     //Changing the unit symbols in the HTML to make the program more easy to use
-    let heightText = document.getElementById("height");
-    let lesserHeightText = document.getElementById("lesserHeight");
-    let weightText = document.getElementById("weight");
+    var heightText = document.getElementById("height");
+    var lesserHeightText = document.getElementById("lesserHeight");
+    var weightText = document.getElementById("weight");
 
     heightText.textContent = unitList[0];
     lesserHeightText.textContent = unitList[1];
@@ -125,4 +119,36 @@ function displayResults(bodyMassIndex, userStatus, obesityClass){
     } else{
         resultDisplay.textContent = bodyMassIndex + "  ==>  " + userStatus + ",  " + obesityClass; 
     }
+}
+
+function giveAppropriateWeight(height, userStatus, multiplier){
+    //This function shows a user, whose BMI is not considered "healthy" what their 
+    //weight should be in order to be considered "healthy".
+    //The results will be displayed on the HTML
+
+    //The ideal BMI will be the closest healthy value to the user
+    let idealBodyMassIndex = "Not determined";
+    let idealWeight = "Not determined";
+    let weightUnit = "Not determined";
+
+    //We need the multiplier to use the same calculation to calculate BMI
+    //in both the US unit and the metric unit. We can also use this to
+    //determine the weight unit we want to show the user.
+    if(multiplier == 1){
+        weightUnit = "kg";
+    } else{
+        weightUnit = "lbs";
+    }
+
+    if(userStatus == "Obese" || userStatus == "Overweight"){
+        idealBodyMassIndex = 24.99;
+    } else if(userStatus == "Underweight"){
+        idealBodyMassIndex = 18.51;
+    }
+    if(isNaN(idealBodyMassIndex) == false){
+        idealWeight = (idealBodyMassIndex * height ** 2) / multiplier;
+        const adviceDisplay = document.getElementById("guidance");
+    adviceDisplay.textContent = "Your weight should be about " + idealWeight.toFixed(1) + " " + weightUnit + " to be considered healthy." 
+    }
+    //Currently only works with the metric system...
 }
