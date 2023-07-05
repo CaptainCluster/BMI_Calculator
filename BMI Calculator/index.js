@@ -26,7 +26,7 @@ function mainFunction(){
     USButton.addEventListener("click", function(){
         if(unit != "US"){
             unit = "US";
-            determineUnitParameters(unit);k
+            determineUnitParameters(unit);
         }
     });
 }
