@@ -1,0 +1,8 @@
+This file contains my plans for the future of this repository.
+
+1. More dynamic HTML, as a whole. Perhaps buttons that change colors
+when the user has done something.
+
+2. To have only one input box for the user's height
+
+3. Support for other languages, perhaps.
