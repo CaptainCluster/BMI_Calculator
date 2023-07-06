@@ -124,6 +124,11 @@ function displayResults(bodyMassIndex, userStatus, obesityClass){
     } else{
         resultDisplay.textContent = bodyMassIndex + "  ==>  " + userStatus + ",  " + obesityClass; 
     }
+    if(userStatus == "Healthy"){
+        resultDisplay.style.color = "#4caf50";
+    } else{
+        resultDisplay.style.color = "red";
+    }
 }
 
 function giveAppropriateWeight(height, userStatus, multiplier){
