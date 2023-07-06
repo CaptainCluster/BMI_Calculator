@@ -160,5 +160,4 @@ function giveAppropriateWeight(height, userStatus, multiplier){
         const adviceDisplay = document.getElementById("guidance");
     adviceDisplay.textContent = "Your weight should be about " + idealWeight.toFixed(1) + " " + weightUnit + " to be considered healthy." 
     }
-    //Currently only works with the metric system...
 }
