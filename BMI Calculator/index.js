@@ -16,8 +16,11 @@ function mainFunction(){
         calculateBMI(unit);
     });
     const metricButton = document.getElementById("buttonMetric");
+    metricButton.style.backgroundColor = "darkgreen";
     metricButton.addEventListener("click", function(){
         if(unit != "metric"){
+            metricButton.style.backgroundColor = "darkgreen";
+            USButton.style.backgroundColor = "#4caf50";
             unit = "metric";
             determineUnitParameters(unit);
         }
@@ -25,6 +28,8 @@ function mainFunction(){
     const USButton = document.getElementById("buttonUS");
     USButton.addEventListener("click", function(){
         if(unit != "US"){
+            USButton.style.backgroundColor = "darkgreen";
+            metricButton.style.backgroundColor = "#4caf50";
             unit = "US";
             determineUnitParameters(unit);
         }
