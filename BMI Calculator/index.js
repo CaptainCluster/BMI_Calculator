@@ -9,7 +9,7 @@ if (document.readyState !== "loading") {
 }
 
 function mainFunction(){
-    var unit = "metric"; //We have metric units by default
+    let unit = "metric"; //We have metric units by default
     determineUnitParameters(unit);
     const submitButton = document.getElementById("submitButton");
     submitButton.addEventListener("click", function(){
@@ -109,9 +109,9 @@ function determineUnitParameters(unit){
 
 function changeMeasuresHTML(unitList){
     //Changing the unit symbols in the HTML to make the program more easy to use
-    var heightText = document.getElementById("height");
-    var lesserHeightText = document.getElementById("lesserHeight");
-    var weightText = document.getElementById("weight");
+    let heightText = document.getElementById("height");
+    let lesserHeightText = document.getElementById("lesserHeight");
+    let weightText = document.getElementById("weight");
 
     heightText.textContent = unitList[0];
     lesserHeightText.textContent = unitList[1];
