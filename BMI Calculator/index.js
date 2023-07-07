@@ -51,13 +51,13 @@ function calculateBMI(unit){
         multiplierFeetToInches = 12;
         divider = 1;
     }
-    if(userHeightLesser == ""){
+    if(userHeightLesser == "" || isNaN(userHeightLesser)){
         userHeightLesser = 0;
     }
-    if(userHeightUpper == ""){
+    if(userHeightUpper == "" || isNaN(userHeightUpper)){
         userHeightUpper = 0;
     }
-    if(userHeightLesser + userHeightUpper != 0 && isNaN(userWeight) == false){
+    if(userHeightLesser + userHeightUpper != 0 && isNaN(userWeight) == false && userWeight != ""){
         const userHeight = parseInt(userHeightUpper) * multiplierFeetToInches + parseInt(userHeightLesser)/divider;
         const bodyMassIndex = (userWeight / userHeight ** 2) * multiplier;
         if(isNaN(bodyMassIndex) == false){

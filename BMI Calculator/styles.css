@@ -25,7 +25,7 @@ div {
   text-align: center;
 }
 
-#submitButton {
+.submitButton {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -34,10 +34,10 @@ div {
   cursor: pointer;
 }
 
-#results {
+.results {
   font-size: 24px;
 }
-#guidance {
+.guidance {
   font-size: 24px;
   color: red;
 }
