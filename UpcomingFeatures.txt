@@ -6,3 +6,7 @@ when the user has done something.
 2. To have only one input box for the user's height
 
 3. Support for other languages, perhaps.
+
+4. Report errors to the user
+
+5. A more appealing way to display the results
