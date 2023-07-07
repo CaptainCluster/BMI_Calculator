@@ -1,5 +1,6 @@
 /** 
 @author CaptainCluster
+https://github.com/CaptainCluster
 */
 
 if (document.readyState !== "loading") {
