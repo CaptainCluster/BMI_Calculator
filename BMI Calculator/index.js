@@ -1,3 +1,7 @@
+/** 
+@author CaptainCluster
+*/
+
 if (document.readyState !== "loading") {
     console.log("Document is ready!");
     mainFunction();
@@ -51,6 +55,8 @@ function calculateBMI(unit){
         multiplierFeetToInches = 12;
         divider = 1;
     }
+    //If the user forgets to add an input to one of the height boxes, we assume
+    //it is a zero in order to make the program better for the user.
     if(userHeightLesser == "" || isNaN(userHeightLesser)){
         userHeightLesser = 0;
     }
