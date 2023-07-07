@@ -57,10 +57,12 @@ function calculateBMI(unit){
     if(userHeightUpper == ""){
         userHeightUpper = 0;
     }
-    if(userHeightLesser + userHeightUpper != 0){
+    if(userHeightLesser + userHeightUpper != 0 && isNaN(userWeight) == false){
         const userHeight = parseInt(userHeightUpper) * multiplierFeetToInches + parseInt(userHeightLesser)/divider;
         const bodyMassIndex = (userWeight / userHeight ** 2) * multiplier;
-        analyzeBMI(bodyMassIndex.toFixed(1), userHeight, multiplier);
+        if(isNaN(bodyMassIndex) == false){
+            analyzeBMI(bodyMassIndex.toFixed(1), userHeight, multiplier);
+        }
     }
 }
 
