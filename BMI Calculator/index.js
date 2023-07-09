@@ -157,6 +157,7 @@ function giveAppropriateWeight(height, userStatus, multiplier){
     let idealBodyMassIndex = "Not determined";
     let idealWeight = "Not determined";
     let weightUnit = "Not determined";
+    const adviceDisplay = document.getElementById("guidance");
 
     //We need the multiplier to use the same calculation to calculate BMI
     //in both the US unit and the metric unit. We can also use this to
@@ -174,7 +175,12 @@ function giveAppropriateWeight(height, userStatus, multiplier){
     }
     if(isNaN(idealBodyMassIndex) == false){
         idealWeight = (idealBodyMassIndex * height ** 2) / multiplier;
-        const adviceDisplay = document.getElementById("guidance");
     adviceDisplay.textContent = "Your weight should be about " + idealWeight.toFixed(1) + " " + weightUnit + " to be considered healthy." 
+    }
+
+    //There is no need to suggest a target height when the user's BMI in the
+    //healthy range. This is why we will clear the textContent.
+    if(userStatus == "Healthy"){
+        adviceDisplay.textContent = "";
     }
 }
