@@ -49,7 +49,7 @@ function submitButtonVisualResponse(submitButton){
     }, 100);
 }
 
-function calculateBMI(unit){
+function calculateBMI(unitOfMeasurement){
     //The BMI calculation process. Also makes sure user has given proper inputs.
     //We have multipliers and dividers with default values to suit metric system. 
     //The default values change when using the US units
@@ -59,7 +59,7 @@ function calculateBMI(unit){
     let userHeightUpper = document.getElementById("heightInput1").value;
     let userHeightLesser = document.getElementById("heightInput2").value;
     const userWeight = document.getElementById("weightInput").value;
-    if(unit == "US"){
+    if(unitOfMeasurement == "US"){
         multiplier = 703;
         multiplierFeetToInches = 12;
         divider = 1;
