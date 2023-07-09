@@ -157,7 +157,7 @@ function giveAppropriateWeight(height, userStatus, multiplier){
     let idealBodyMassIndex = "Not determined";
     let idealWeight = "Not determined";
     let weightUnit = "Not determined";
-    const adviceDisplay = document.getElementById("guidance");
+    const adviceDisplay = document.getElementById("weightSuggestion");
 
     //We need the multiplier to use the same calculation to calculate BMI
     //in both the US unit and the metric unit. We can also use this to
