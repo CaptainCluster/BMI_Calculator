@@ -19,6 +19,8 @@ function mainFunction(){
     const submitButton = document.getElementById("submitButton");
     submitButton.addEventListener("click", function(){
         calculateBMI(unit);
+        submitButtonVisualResponse(submitButton);
+
     });
     const metricButton = document.getElementById("buttonMetric");
     metricButton.style.backgroundColor = "darkgreen";
@@ -39,6 +41,12 @@ function mainFunction(){
             determineUnitParameters(unit);
         }
     });
+}
+function submitButtonVisualResponse(submitButton){
+    submitButton.classList.add("clicked");
+    setTimeout(function(){
+        submitButton.classList.remove("clicked");
+    }, 100);
 }
 
 function calculateBMI(unit){
