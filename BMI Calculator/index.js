@@ -137,9 +137,9 @@ function displayResults(bodyMassIndex, userStatus, obesityClass){
     //Showing the results to the user in the h1 tag 
     const resultDisplay = document.getElementById("results");
     if(obesityClass == "Not determined"){
-        resultDisplay.textContent = bodyMassIndex + "  ==>  " + userStatus; 
+        resultDisplay.textContent = "Your BMI: " + bodyMassIndex + "  ==>  " + userStatus; 
     } else{
-        resultDisplay.textContent = bodyMassIndex + "  ==>  " + userStatus + ",  " + obesityClass; 
+        resultDisplay.textContent = "Your BMI: " + bodyMassIndex + "  ==>  " + userStatus + ",  " + obesityClass; 
     }
     if(userStatus == "Healthy"){
         resultDisplay.style.color = "#4caf50";
