@@ -64,14 +64,8 @@ function calculateBMI(unitOfMeasurement){
         multiplierFeetToInches = 12;
         divider = 1;
     }
-    //If the user forgets to add an input to one of the height boxes, we assume
-    //it is a zero in order to make the program better for the user.
-    if(userHeightLesser == "" || isNaN(userHeightLesser)){
-        userHeightLesser = 0;
-    }
-    if(userHeightUpper == "" || isNaN(userHeightUpper)){
-        userHeightUpper = 0;
-    }
+    userHeightLesser = noInputProcess(userHeightLesser);
+    userHeightUpper = noInputProcess(userHeightUpper);
     if(userHeightLesser + userHeightUpper != 0 && isNaN(userWeight) == false && userWeight != ""){
         const userHeight = parseInt(userHeightUpper) * multiplierFeetToInches + parseInt(userHeightLesser)/divider;
         const bodyMassIndex = (userWeight / userHeight ** 2) * multiplier;
@@ -79,6 +73,15 @@ function calculateBMI(unitOfMeasurement){
             analyzeBMI(bodyMassIndex.toFixed(1), userHeight, multiplier);
         }
     }
+}
+
+function noInputProcess(heightType){
+    //If the user forgets to add an input to one of the height boxes, we assume
+    //it is a zero in order to make the program better for the user.
+    if(heightType == "" || isNaN(heightType)){
+        heightType = 0;
+    }
+    return heightType;
 }
 
 function analyzeBMI(bodyMassIndex, height, multiplier){
