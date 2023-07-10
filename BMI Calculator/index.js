@@ -181,7 +181,7 @@ function giveAppropriateWeight(height, userStatus, multiplier){
     adviceDisplay.textContent = "Your weight should be about " + idealWeight.toFixed(1) + " " + weightUnit + " to be considered healthy." 
     }
 
-    //There is no need to suggest a target height when the user's BMI in the
+    //There is no need to suggest a target height when the user's BMI is in the
     //healthy range. This is why we will clear the textContent.
     if(userStatus == "Healthy"){
         adviceDisplay.textContent = "";
