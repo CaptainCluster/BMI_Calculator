@@ -5,7 +5,11 @@ Here are the simple instructions:
 2. Type in your weight in either kilograms or pounds, depending on the units you use.
 3. Submit the results and your BMI will be displayed underneath the button you pressed.
 
-There are four different states: underweight, healthy, overweight and obese. The "obese" state has three obesity classes to determine how severe the obesity is.
+There are four different states: underweight, healthy, overweight and obese.
+The "obese" state has three obesity classes to determine how severe the obesity is.
+
+The program is will suggest the user a target weight to reach as a goal in order to
+be considered "healthy".  
 
 
 
