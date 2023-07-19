@@ -20,7 +20,6 @@ function mainFunction(){
     submitButton.addEventListener("click", function(){
         calculateBMI(unitOfMeasurement);
         submitButtonVisualResponse(submitButton);
-
     });
     const metricButton = document.getElementById("buttonMetric");
     metricButton.style.backgroundColor = "darkgreen";
