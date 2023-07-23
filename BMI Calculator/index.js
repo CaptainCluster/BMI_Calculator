@@ -148,6 +148,8 @@ function displayResults(bodyMassIndex, userStatus, obesityClass){
     } else{
         resultDisplay.style.color = "red";
     }
+    const defaultTextElement = document.getElementById("defaultText");
+    defaultTextElement.textContent = "";
 }
 
 function giveAppropriateWeight(height, userStatus, multiplier){
