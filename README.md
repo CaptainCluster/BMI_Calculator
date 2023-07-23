@@ -11,5 +11,8 @@ The "obese" state has three obesity classes to determine how severe the obesity 
 The program is will suggest the user a target weight to reach as a goal in order to
 be considered "healthy".  
 
+<img width="335" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/90572386-ea6a-4194-ba63-07a2eaa684fc">
+
+
 
 
