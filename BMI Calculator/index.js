@@ -1,6 +1,6 @@
 /** 
 @author CaptainCluster
-https://github.com/CaptainCluster
+@link https://github.com/CaptainCluster
 */
 
 if (document.readyState !== "loading") {
@@ -13,6 +13,10 @@ if (document.readyState !== "loading") {
     });
 }
 
+/**
+ * @function mainFunction
+ * @description - Handles the main process
+ */
 function mainFunction(){
     let unitOfMeasurement = "metric"; //We have metric units by default
     determineUnitParameters(unitOfMeasurement);
@@ -41,6 +45,12 @@ function mainFunction(){
         }
     });
 }
+
+/**
+ * @function submitButtonVisualResponse
+ * @description - The button shows a visual response to the user
+ * @param {buttonHtmlTag} submitButton - The html button element that the user can press
+ */
 function submitButtonVisualResponse(submitButton){
     submitButton.classList.add("clicked");
     setTimeout(function(){
@@ -48,8 +58,12 @@ function submitButtonVisualResponse(submitButton){
     }, 100);
 }
 
+/**
+ * @function calculateBMI
+ * @description - Calculates BMI, after verifying that the user inputs are correct
+ * @param {String} unitOfMeasurement - Imperial or metric, affects how the BMI is calculated
+ */
 function calculateBMI(unitOfMeasurement){
-    //The BMI calculation process. Also makes sure user has given proper inputs.
     //We have multipliers and dividers with default values to suit metric system. 
     //The default values change when using the US units
     let multiplier = 1;
@@ -74,6 +88,13 @@ function calculateBMI(unitOfMeasurement){
     }
 }
 
+/**
+ * @function noInputProcess
+ * @description - Takes a height input and then turns it into a valid one
+ * to avoid errors and to improve the user experience
+ * @param {number} heightType - Height in feet, meters, centimeters or inches
+ * @returns {number}
+ */
 function noInputProcess(heightType){
     //If the user forgets to add an input to one of the height boxes, we assume
     //it is a zero in order to make the program better for the user.
@@ -83,9 +104,14 @@ function noInputProcess(heightType){
     return heightType;
 }
 
+/**
+ * @function analyzeBMI
+ * @description - //Making conclusions based on the BMI and getting them ready for display
+ * @param {number} bodyMassIndex 
+ * @param {number} height - Combines both meters and centimeters (or feet and inches)
+ * @param {number} multiplier - 1 if metric system is used, 703 if imperial system is used
+ */
 function analyzeBMI(bodyMassIndex, height, multiplier){
-    //Making conclusions based on the BMI and getting them ready for display
-    //For instance, a BMI of 31 means we will tell the user they are obese,
     let userStatus = "Not determined";
     let userObesityClass = "Not determined";
     if (bodyMassIndex < 18.5) {
@@ -102,9 +128,15 @@ function analyzeBMI(bodyMassIndex, height, multiplier){
     giveAppropriateWeight(height, userStatus, multiplier);
 }
 
+
+/**
+ * @function determineObesityClass
+ * @description - If the user is obese, this function measures its severity
+ * @param {number} bodyMassIndex 
+ * @returns {String} - the obesity class
+ */
 function determineObesityClass(bodyMassIndex){
     //There are three different obesity classes (class 3 = severe obesity)
-    //This function is used when the BMI indicated the user is obese
     let userObesityClass = "Not determined";
     if(bodyMassIndex >= 30 && bodyMassIndex < 35){
         userObesityClass = "Class 1";
@@ -115,7 +147,10 @@ function determineObesityClass(bodyMassIndex){
     }
     return userObesityClass;
 }
-
+/**
+ * @function determineUnitParameters
+ * @param {String} unit - Metric or imperial 
+ */
 function determineUnitParameters(unit){
     if(unit == "metric"){
         changeMeasuresHTML(["[m]", "[cm]", "[kg]"]);
@@ -124,6 +159,11 @@ function determineUnitParameters(unit){
     }
 }
 
+/**
+ * @function changeMeasuresHTML
+ * @description - Updates the symbols in the HTML, depending on the used system
+ * @param {Array} unitList - Contains the strings to be displayed in html
+ */
 function changeMeasuresHTML(unitList){
     //Changing the unit symbols in the HTML to make the program more easy to use
     let heightText = document.getElementById("height");
@@ -135,6 +175,12 @@ function changeMeasuresHTML(unitList){
     weightText.textContent = unitList[2];
 }
 
+/**
+ * @function displayResults
+ * @param {number} bodyMassIndex
+ * @param {String} userStatus - Underweight / Normal / Overweight / Obese
+ * @param {String} obesityClass - Class 1 / Class 2 / Class 3
+ */
 function displayResults(bodyMassIndex, userStatus, obesityClass){
     //Showing the results to the user in the h1 tag 
     const resultDisplay = document.getElementById("results");
@@ -152,11 +198,15 @@ function displayResults(bodyMassIndex, userStatus, obesityClass){
     defaultTextElement.textContent = "";
 }
 
+/**
+ * @function giveAppropriateWeight
+ * @description - shows the user, whose BMI is not "healthy" what their weight should be 
+ * @param {number} height 
+ * @param {String} userStatus - Underweight / Normal / Overweight / Obese
+ * @param {number} multiplier - 1 if metric system is used, 703 if imperial system is used
+ */
 function giveAppropriateWeight(height, userStatus, multiplier){
-    //This function shows a user, whose BMI is not considered "healthy" what their 
-    //weight should be in order to be considered "healthy".
     //The results will be displayed on the HTML
-
     //The ideal BMI will be the closest healthy value to the user
     let idealBodyMassIndex = "Not determined";
     let idealWeight = "Not determined";
