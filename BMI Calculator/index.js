@@ -178,10 +178,10 @@ function determineUnitParameters(unit){
 function changeMeasuresHTML(unitList){
     //Changing the unit symbols in the HTML to make the program more easy to use
     let heightText = document.getElementById("height");
-    let lesserHeightText = document.getElementById("lesserHeight");
+    let lesserHeightText = document.getElementById("heightLesser");
     let weightText = document.getElementById("weight");
 
-    heightText.textContent = unitList[0];
+    heightText.textContent = "Your height " + unitList[0];
     lesserHeightText.textContent = unitList[1];
     weightText.textContent = unitList[2];
 }
