@@ -70,6 +70,50 @@ function submitButtonVisualResponse(submitButton){
 }
 
 /**
+ * @function noInputProcess
+ * @description - Takes a height input and then turns it into a valid one
+ * to avoid errors and to improve the user experience
+ * @param {number} heightType - Height in feet, meters, centimeters or inches
+ * @returns {number}
+ */
+function noInputProcess(heightType){
+    //If the user forgets to add an input to one of the height boxes, we assume
+    //it is a zero in order to make the program better for the user.
+    if(heightType == "" || isNaN(heightType)){
+        heightType = 0;
+    }
+    return heightType;
+}
+
+/**
+ * @function determineUnitParameters
+ * @param {String} unit - Metric or imperial 
+ */
+function determineUnitParameters(unit){
+    if(unit == "metric"){
+        changeMeasuresHTML(["[m]", "[cm]", "[kg]"]);
+    } else{
+        changeMeasuresHTML(["[ft]", "[in]", "[lb]"]);
+    }
+}
+
+/**
+ * @function changeMeasuresHTML
+ * @description - Updates the symbols in the HTML, depending on the used system
+ * @param {Array} unitList - Contains the strings to be displayed in html
+ */
+function changeMeasuresHTML(unitList){
+    //Changing the unit symbols in the HTML to make the program more easy to use
+    let heightText = document.getElementById("height");
+    let lesserHeightText = document.getElementById("heightLesser");
+    let weightText = document.getElementById("weight");
+
+    heightText.textContent = "Your height " + unitList[0];
+    lesserHeightText.textContent = unitList[1];
+    weightText.textContent = unitList[2];
+}
+
+/**
  * @function calculateBMI
  * @description - Calculates BMI, after verifying that the user inputs are correct
  * @param {String} unitOfMeasurement - Imperial or metric, affects how the BMI is calculated
@@ -97,22 +141,6 @@ function calculateBMI(unitOfMeasurement){
             analyzeBMI(bodyMassIndex.toFixed(1), userHeight, multiplier);
         }
     }
-}
-
-/**
- * @function noInputProcess
- * @description - Takes a height input and then turns it into a valid one
- * to avoid errors and to improve the user experience
- * @param {number} heightType - Height in feet, meters, centimeters or inches
- * @returns {number}
- */
-function noInputProcess(heightType){
-    //If the user forgets to add an input to one of the height boxes, we assume
-    //it is a zero in order to make the program better for the user.
-    if(heightType == "" || isNaN(heightType)){
-        heightType = 0;
-    }
-    return heightType;
 }
 
 /**
@@ -157,33 +185,6 @@ function determineObesityClass(bodyMassIndex){
         userObesityClass = "Class 3"; 
     }
     return userObesityClass;
-}
-/**
- * @function determineUnitParameters
- * @param {String} unit - Metric or imperial 
- */
-function determineUnitParameters(unit){
-    if(unit == "metric"){
-        changeMeasuresHTML(["[m]", "[cm]", "[kg]"]);
-    } else{
-        changeMeasuresHTML(["[ft]", "[in]", "[lb]"]);
-    }
-}
-
-/**
- * @function changeMeasuresHTML
- * @description - Updates the symbols in the HTML, depending on the used system
- * @param {Array} unitList - Contains the strings to be displayed in html
- */
-function changeMeasuresHTML(unitList){
-    //Changing the unit symbols in the HTML to make the program more easy to use
-    let heightText = document.getElementById("height");
-    let lesserHeightText = document.getElementById("heightLesser");
-    let weightText = document.getElementById("weight");
-
-    heightText.textContent = "Your height " + unitList[0];
-    lesserHeightText.textContent = unitList[1];
-    weightText.textContent = unitList[2];
 }
 
 /**
