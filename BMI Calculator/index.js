@@ -4,46 +4,57 @@
 */
 
 if (document.readyState !== "loading") {
-    console.log("Document is ready!");
     mainFunction();
   } else {
-    document.addEventListener("DOMContentLoaded", function () {
-      console.log("Document is ready after waiting!");
+    document.addEventListener("DOMContentLoaded", () => {
       mainFunction();
     });
 }
 
 /**
  * @function mainFunction
- * @description - Handles the main process
  */
 function mainFunction(){
     let unitOfMeasurement = "metric"; //We have metric units by default
     determineUnitParameters(unitOfMeasurement);
+    unitOfMeasurement = buttonProcess(unitOfMeasurement);
+}
+
+/**
+ * @function buttonProcess
+ * @description - Handling the functionality of each button the user can press
+ * @param {String} unitOfMeasurement 
+ * @returns {String} - Returning variable unitOfMeasurement to avoid discarding the changes
+ */
+function buttonProcess(unitOfMeasurement){
+    //submitButton launches the BMI calculation process and sends the user input
     const submitButton = document.getElementById("submitButton");
-    submitButton.addEventListener("click", function(){
+    submitButton.addEventListener("click", () => {
         calculateBMI(unitOfMeasurement);
         submitButtonVisualResponse(submitButton);
     });
+    //metricButton changes the measurement system to metric
     const metricButton = document.getElementById("buttonMetric");
     metricButton.style.backgroundColor = "darkgreen";
-    metricButton.addEventListener("click", function(){
+    metricButton.addEventListener("click", () => {
         if(unitOfMeasurement != "metric"){
             metricButton.style.backgroundColor = "darkgreen";
-            USButton.style.backgroundColor = "#4caf50";
+            imperialButton.style.backgroundColor = "#4caf50";
             unitOfMeasurement = "metric";
             determineUnitParameters(unitOfMeasurement);
         }
     });
-    const USButton = document.getElementById("buttonUS");
-    USButton.addEventListener("click", function(){
+    //imperialButton changes the measurement system to imperial.
+    const imperialButton = document.getElementById("buttonUS");
+    imperialButton.addEventListener("click", () => {
         if(unitOfMeasurement != "US"){
-            USButton.style.backgroundColor = "darkgreen";
+            imperialButton.style.backgroundColor = "darkgreen";
             metricButton.style.backgroundColor = "#4caf50";
             unitOfMeasurement = "US";
             determineUnitParameters(unitOfMeasurement);
         }
     });
+    return unitOfMeasurement;
 }
 
 /**
