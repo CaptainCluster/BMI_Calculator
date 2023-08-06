@@ -1,11 +1,8 @@
 /** 
 @author CaptainCluster
 @link https://github.com/CaptainCluster
+@description - Contains a bunch of  fixed values to make the code in index.js more maintainable
 */
-
-//This contains a bunch of variables with fixed values to make the code in index.js
-//more maintainable.
-
 const config = {
     //BMI status related conditions
     BMI_UNDERWEIGHT : 18.50,
@@ -32,9 +29,10 @@ const config = {
     BMI_DECIMAL : 1,
     IDEAL_WEIGHT_DECIMAL : 1,
     
-    //Others...
+    //Others
     BUTTON_CLICKED_DURATION : 100,
     HEIGHT_DEFAULT : 0, //If the user gives no height input, it's 0 by default
+    POWER : 2, //If we want to calculate the weight using BMI and height, we need this
 }
 
 export { config }

@@ -18,16 +18,16 @@ if (document.readyState !== "loading") {
 function mainFunction(){
     let unitOfMeasurement = "metric"; //We have metric units by default
     determineUnitParameters(unitOfMeasurement);
-    unitOfMeasurement = buttonProcess(unitOfMeasurement);
+    unitOfMeasurement = buttonSetup(unitOfMeasurement);
 }
 
 /**
- * @function buttonProcess
+ * @function buttonSetup
  * @description - Handling the functionality of each button the user can press
  * @param {String} unitOfMeasurement 
  * @returns {String} - Returning variable unitOfMeasurement to avoid discarding the changes
  */
-function buttonProcess(unitOfMeasurement){
+function buttonSetup(unitOfMeasurement){
     //submitButton launches the BMI calculation process and sends the user input
     const submitButton = document.getElementById("submitButton");
     submitButton.addEventListener("click", () => {
@@ -65,9 +65,7 @@ function buttonProcess(unitOfMeasurement){
  */
 function submitButtonVisualResponse(submitButton){
     submitButton.classList.add("clicked");
-    setTimeout(function(){
-        submitButton.classList.remove("clicked");
-    }, config.BUTTON_CLICKED_DURATION);
+    setTimeout(() => { submitButton.classList.remove("clicked"); }, config.BUTTON_CLICKED_DURATION);
 }
 
 /**
@@ -144,7 +142,7 @@ function calculateBMI(unitOfMeasurement){
     //based on them.
     if(userHeightLesser + userHeightUpper != 0 && isNaN(userWeight) == false && userWeight != ""){
         const userHeight = parseInt(userHeightUpper) * multiplierFeetToInches + parseInt(userHeightLesser)/divider;
-        const bodyMassIndex = (userWeight / userHeight ** 2) * multiplier;
+        const bodyMassIndex = (userWeight / userHeight ** config.POWER) * multiplier;
         if(isNaN(bodyMassIndex) == false){
             analyzeBMI(bodyMassIndex.toFixed(config.BMI_DECIMAL), userHeight, multiplier);
         }
@@ -248,7 +246,7 @@ function giveAppropriateWeight(height, userStatus, multiplier){
         idealBodyMassIndex = config.BMI_NORMAL_LOWER;
     }
     if(isNaN(idealBodyMassIndex) == false){
-        idealWeight = (idealBodyMassIndex * height ** 2) / multiplier;
+        idealWeight = (idealBodyMassIndex * height ** config.POWER) / multiplier;
     adviceDisplay.textContent = "Your weight should be about " + idealWeight.toFixed(config.IDEAL_WEIGHT_DECIMAL) + " " + weightUnit + " to be considered healthy." 
     }
 
