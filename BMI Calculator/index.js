@@ -16,7 +16,7 @@ if (document.readyState !== "loading") {
  * @function mainFunction
  */
 function mainFunction(){
-    let unitOfMeasurement = "metric"; //We have metric units by default
+    let unitOfMeasurement = config.MEASUREMENT_METRIC; //We have metric units by default
     determineUnitParameters(unitOfMeasurement);
     unitOfMeasurement = buttonSetup(unitOfMeasurement);
 }
@@ -38,20 +38,20 @@ function buttonSetup(unitOfMeasurement){
     const metricButton = document.getElementById("buttonMetric");
     metricButton.style.backgroundColor = "darkgreen";
     metricButton.addEventListener("click", () => {
-        if(unitOfMeasurement != "metric"){
+        if(unitOfMeasurement != config.MEASUREMENT_METRIC){
             metricButton.style.backgroundColor = "darkgreen";
             imperialButton.style.backgroundColor = "#4caf50";
-            unitOfMeasurement = "metric";
+            unitOfMeasurement = config.MEASUREMENT_METRIC;
             determineUnitParameters(unitOfMeasurement);
         }
     });
     //imperialButton changes the measurement system to imperial.
     const imperialButton = document.getElementById("buttonUS");
     imperialButton.addEventListener("click", () => {
-        if(unitOfMeasurement != "US"){
+        if(unitOfMeasurement != config.MEASUREMENT_IMPERIAL){
             imperialButton.style.backgroundColor = "darkgreen";
             metricButton.style.backgroundColor = "#4caf50";
-            unitOfMeasurement = "US";
+            unitOfMeasurement = config.MEASUREMENT_IMPERIAL;
             determineUnitParameters(unitOfMeasurement);
         }
     });
@@ -89,7 +89,7 @@ function noInputProcess(heightType){
  * @param {String} unit - Metric or imperial 
  */
 function determineUnitParameters(unit){
-    if(unit == "metric"){
+    if(unit == config.MEASUREMENT_METRIC){
         changeMeasuresHTML(["[m]", "[cm]", "[kg]"]);
     } else{
         changeMeasuresHTML(["[ft]", "[in]", "[lb]"]);
@@ -118,35 +118,37 @@ function changeMeasuresHTML(unitList){
  * @param {String} unitOfMeasurement - Imperial or metric, affects how the BMI is calculated
  */
 function calculateBMI(unitOfMeasurement){
-    //Metric system is used on default when the program is started.
-    let multiplier = config.BMI_MULTIPLIER_METRIC;
-    let multiplierFeetToInches = config.BMI_MULTIPLIER_METRIC;
-    let divider = config.BMI_DIVIDER_METRIC;
+    try{
+        //Metric system is used on default when the program is started.
+        let multiplier = config.BMI_MULTIPLIER_METRIC;
+        let multiplierFeetToInches = config.BMI_MULTIPLIER_METRIC;
+        let divider = config.BMI_DIVIDER_METRIC;
 
-    //Let's store the input given by the user into variables.
-    let userHeightUpper = document.getElementById("heightInput1").value; //Meters or feet
-    let userHeightLesser = document.getElementById("heightInput2").value; //Centimeters or inches
-    const userWeight = document.getElementById("weightInput").value; //Kilograms or pounds
+        //Let's store the input given by the user into variables.
+        let userHeightUpper = document.getElementById("heightInput1").value; //Meters or feet
+        let userHeightLesser = document.getElementById("heightInput2").value; //Centimeters or inches
+        const userWeight = document.getElementById("weightInput").value; //Kilograms or pounds
 
-    if(unitOfMeasurement == "US"){
-        multiplier = config.BMI_MULTIPLIER_IMPERIAL;
-        multiplierFeetToInches = config.BMI_MULTIPLIER_IMPERIAL_FEET;
-        divider = config.BMI_DIVIDER_IMPERIAL;
-    }
-
-    //Responding to a potential situation where the user has not given inputs.
-    userHeightLesser = noInputProcess(userHeightLesser);
-    userHeightUpper = noInputProcess(userHeightUpper);
-
-    //Should the user's inputs be considered valid, the program will proceed to calculate the BMI
-    //based on them.
-    if(userHeightLesser + userHeightUpper != 0 && isNaN(userWeight) == false && userWeight != ""){
-        const userHeight = parseInt(userHeightUpper) * multiplierFeetToInches + parseInt(userHeightLesser)/divider;
-        const bodyMassIndex = (userWeight / userHeight ** config.POWER) * multiplier;
-        if(isNaN(bodyMassIndex) == false){
-            analyzeBMI(bodyMassIndex.toFixed(config.BMI_DECIMAL), userHeight, multiplier);
+        if(unitOfMeasurement == config.MEASUREMENT_IMPERIAL){
+            multiplier = config.BMI_MULTIPLIER_IMPERIAL;
+            multiplierFeetToInches = config.BMI_MULTIPLIER_IMPERIAL_FEET;
+            divider = config.BMI_DIVIDER_IMPERIAL;
         }
-    }
+        //Responding to a potential situation where the user has not given inputs.
+        userHeightLesser = noInputProcess(userHeightLesser);
+        userHeightUpper = noInputProcess(userHeightUpper);
+        //Should the user's inputs be considered valid, the program will proceed to calculate the BMI
+        //based on them.
+        if(userHeightLesser + userHeightUpper != 0 && isNaN(userWeight) == false && userWeight != ""){
+            const userHeight = parseInt(userHeightUpper) * multiplierFeetToInches + parseInt(userHeightLesser)/divider;
+            const bodyMassIndex = (userWeight / userHeight ** config.POWER) * multiplier;
+            if(isNaN(bodyMassIndex) == false){
+                analyzeBMI(bodyMassIndex.toFixed(config.BMI_DECIMAL), userHeight, multiplier);
+            }
+        }
+    } catch(error){
+        console.error("The program ran into the following error:", error.message);
+    };
 }
 
 /**
@@ -157,21 +159,25 @@ function calculateBMI(unitOfMeasurement){
  * @param {number} multiplier - 1 if metric system is used, 703 if imperial system is used
  */
 function analyzeBMI(bodyMassIndex, height, multiplier){
-    let userStatus = "Not determined";
-    let userObesityClass = "Not determined"; //Only determined if the BMI is above 30
+    try{
+        let userStatus = config.STATE_NOT_DETERMINED;
+        let userObesityClass = config.STATE_NOT_DETERMINED; //Only determined if the BMI is above 30
 
-    if (bodyMassIndex < config.BMI_UNDERWEIGHT) {
-        userStatus = "Underweight";
-    } else if (bodyMassIndex >= config.BMI_UNDERWEIGHT && bodyMassIndex < config.BMI_OVERWEIGHT) {
-        userStatus = "Healthy";
-    } else if (bodyMassIndex >= config.BMI_OVERWEIGHT && bodyMassIndex < config.BMI_OBESE) {
-        userStatus = "Overweight";
-    } else {
-        userStatus = "Obese";
-        userObesityClass = determineObesityClass(bodyMassIndex);
+        if (bodyMassIndex < config.BMI_UNDERWEIGHT) {
+            userStatus = "Underweight";
+        } else if (bodyMassIndex >= config.BMI_UNDERWEIGHT && bodyMassIndex < config.BMI_OVERWEIGHT) {
+            userStatus = "Healthy";
+        } else if (bodyMassIndex >= config.BMI_OVERWEIGHT && bodyMassIndex < config.BMI_OBESE) {
+            userStatus = "Overweight";
+        } else {
+            userStatus = "Obese";
+            userObesityClass = determineObesityClass(bodyMassIndex);
+        }
+        displayResults(bodyMassIndex, userStatus, userObesityClass);
+        giveAppropriateWeight(height, userStatus, multiplier);
+    } catch(error){
+        console.error("The program ran into the following error:", error.message);
     }
-    displayResults(bodyMassIndex, userStatus, userObesityClass);
-    giveAppropriateWeight(height, userStatus, multiplier);
 }
 
 /**
@@ -182,7 +188,7 @@ function analyzeBMI(bodyMassIndex, height, multiplier){
  */
 function determineObesityClass(bodyMassIndex){
     //There are three different obesity classes (class 3 = severe obesity)
-    let userObesityClass = "Not determined";
+    let userObesityClass = config.STATE_NOT_DETERMINED;
     if(bodyMassIndex >= config.OBESITY_CLASS_1 && bodyMassIndex < config.OBESITY_CLASS_2){
         userObesityClass = "Class 1";
     } else if(bodyMassIndex >= config.OBESITY_CLASS_2 && bodyMassIndex < config.OBESITY_CLASS_3){
@@ -201,19 +207,23 @@ function determineObesityClass(bodyMassIndex){
  */
 function displayResults(bodyMassIndex, userStatus, obesityClass){
     //Showing the results to the user in the h1 tag 
-    const resultDisplay = document.getElementById("results");
-    if(obesityClass == "Not determined"){
-        resultDisplay.textContent = "Your BMI: " + bodyMassIndex + "  ==>  " + userStatus; 
-    } else{
-        resultDisplay.textContent = "Your BMI: " + bodyMassIndex + "  ==>  " + userStatus + ",  " + obesityClass; 
+    try{
+        const resultDisplay = document.getElementById("results");
+        if(obesityClass == config.STATE_NOT_DETERMINED){
+            resultDisplay.textContent = "Your BMI: " + bodyMassIndex + "  ==>  " + userStatus; 
+        } else{
+            resultDisplay.textContent = "Your BMI: " + bodyMassIndex + "  ==>  " + userStatus + ",  " + obesityClass; 
+        }
+        if(userStatus == "Healthy"){
+            resultDisplay.style.color = "#4caf50";
+        } else{
+            resultDisplay.style.color = "red";
+        }
+        const defaultTextElement = document.getElementById("defaultText");
+        defaultTextElement.textContent = "";
+    } catch(error){
+        console.error("The program ran into the following error:", error.message);
     }
-    if(userStatus == "Healthy"){
-        resultDisplay.style.color = "#4caf50";
-    } else{
-        resultDisplay.style.color = "red";
-    }
-    const defaultTextElement = document.getElementById("defaultText");
-    defaultTextElement.textContent = "";
 }
 
 /**
@@ -226,11 +236,10 @@ function displayResults(bodyMassIndex, userStatus, obesityClass){
 function giveAppropriateWeight(height, userStatus, multiplier){
     //The results will be displayed on the HTML
     //The ideal BMI will be the closest healthy value to the user
-    let idealBodyMassIndex = "Not determined";
-    let idealWeight = "Not determined";
-    let weightUnit = "Not determined";
+    let idealBodyMassIndex = config.STATE_NOT_DETERMINED;
+    let idealWeight = config.STATE_NOT_DETERMINED;
+    let weightUnit = config.STATE_NOT_DETERMINED;
     const adviceDisplay = document.getElementById("weightSuggestion");
-
     //We need the multiplier to use the same calculation to calculate BMI
     //in both the US unit and the metric unit. We can also use this to
     //determine the weight unit we want to show the user.
@@ -239,7 +248,6 @@ function giveAppropriateWeight(height, userStatus, multiplier){
     } else{
         weightUnit = "lbs";
     }
-
     if(userStatus == "Obese" || userStatus == "Overweight"){
         idealBodyMassIndex = config.BMI_NORMAL_HIGHER;
     } else if(userStatus == "Underweight"){
@@ -249,7 +257,6 @@ function giveAppropriateWeight(height, userStatus, multiplier){
         idealWeight = (idealBodyMassIndex * height ** config.POWER) / multiplier;
     adviceDisplay.textContent = "Your weight should be about " + idealWeight.toFixed(config.IDEAL_WEIGHT_DECIMAL) + " " + weightUnit + " to be considered healthy." 
     }
-
     //There is no need to suggest a target height when the user's BMI is in 
     //the healthy range. This is why we will clear the textContent.
     if(userStatus == "Healthy"){
