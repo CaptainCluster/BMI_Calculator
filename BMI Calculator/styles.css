@@ -34,8 +34,8 @@ div {
   cursor: pointer;
 }
 
-.clicked{
-  background-color: #0052aa;
+.selected{
+  background-color: darkgreen;
 }
 
 .weightSuggestion {
