@@ -40,7 +40,8 @@ const config = {
     MEASUREMENT_IMPERIAL : "US",
     MEASUREMENT_METRIC : "metric",
 
-    STATE_NOT_DETERMINED : "Not determined",
+    STRING_UNDEFINED : "Not determined",
+    NUMBER_UNDEFINED : 0,
 }
 
 export { config }
