@@ -1,4 +1,5 @@
 /** 
+@description - Calculate your BMI with this program and get some data to help you set goals for a healthy BMI
 @author CaptainCluster
 @link https://github.com/CaptainCluster
 */
