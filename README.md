@@ -11,7 +11,19 @@ The "obese" state has three obesity classes to determine how severe the obesity 
 The program is will suggest the user a target weight to reach as a goal in order to
 be considered "healthy".  
 
-<img width="335" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/90572386-ea6a-4194-ba63-07a2eaa684fc">
+When using metric units...
+
+<img width="542" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/e99541e0-520d-4d3d-b14c-cb77ab312588">
+
+When using imperial units... 
+
+<img width="614" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/4699eb12-a010-4ae7-bd4a-63c9a4a9615a">
+
+In order to make the program more flexible, setting the height with only one of the boxes works.
+
+<img width="383" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/c47ee0e7-5c61-440f-b088-59912d442b09">
+
+
 
 
 
