@@ -1,3 +1,8 @@
+/** 
+@author CaptainCluster
+@link https://github.com/CaptainCluster
+*/
+
 import { user } from "../user.js";
 import { config } from "../config.js";
 

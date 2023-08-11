@@ -1,3 +1,8 @@
+/** 
+@author CaptainCluster
+@link https://github.com/CaptainCluster
+*/
+
 /**
  * Handling the functionality of each button the user can press
  * @param {String} unitOfMeasurement 
@@ -6,6 +11,8 @@
 
 import { config } from "../config.js"; //A bunch of keys with fixed value pairs
 import { user } from "../user.js";
+import { mainErrorProcess } from "./errorHandling.js";
+
 import { submitButtonVisualResponse, 
     measurementUnitButtonVisualResponse, 
     changeMeasuresHTML, 
@@ -120,7 +127,7 @@ function calculateBMI(unitOfMeasurement){
             }
         }
     } catch(error){
-        console.error("The program ran into the following error:", error.message);
+        mainErrorProcess(error);
     };
 }
 
@@ -145,7 +152,7 @@ function analyzeBMI(multiplier){
         displayResults(); 
         giveAppropriateWeight(multiplier); 
     } catch(error){
-        resultDisplay.textContent = "The program ran into the following error: " + error.message;
+        mainErrorProcess(error);
     }
 }
 
@@ -204,10 +211,6 @@ function giveAppropriateWeight(multiplier){
     measureWeightDifferences(idealWeight, weightUnit);
 }
 
-function calculateIdealBMI(){
-
-}
-
 /**
  * @function measureWeightDifferences
  * @description - Measures the difference between the user's weight and the ideal one
@@ -226,4 +229,7 @@ function measureWeightDifferences(idealWeight, weightUnit){
         weightComparisonHolder.textContent = "According to the calculator, you are healthy weight-wise! Keep it up!";
     }
 }
+
+
+
 export { determineUnitParameters,  buttonSetup }
