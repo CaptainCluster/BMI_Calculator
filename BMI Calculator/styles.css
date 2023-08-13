@@ -34,7 +34,7 @@ div {
   cursor: pointer;
 }
 
-.selected{
+.selected {
   background-color: darkgreen;
 }
 
@@ -48,4 +48,8 @@ div {
   padding: 10px;
   margin-top: 10px;
   font-size: 10px;
+}
+
+#errorMessage{
+  color: red;
 }
