@@ -4,7 +4,9 @@ A fully functional BMI calculator that works with both the metric and the imperi
 ---
 In order to use the program, you need to have Bootstrap installed. 
 
-Run the following command in your Command Prompt:   ```npm i bootstrap@5.3.1```
+Run the following command in your Command Prompt:  
+
+```npm i bootstrap@5.3.1```
 
 Now you should be able to enjoy what Bootstrap has to offer :)
 
