@@ -142,6 +142,7 @@ function calculateBMI(unitOfMeasurement){
  */
 function analyzeBMI(multiplier){
     try{
+        user.obesityClass = config.STRING_UNDEFINED; //Wiping out the potential, outdated, user obesity class
         //Comparing the user's BMI to multiple fixed values to determine the user's status
         if (user.bodyMassIndex < config.BMI_UNDERWEIGHT) {
             user.status = "Underweight";
@@ -162,6 +163,7 @@ function analyzeBMI(multiplier){
 
 /**
  * If the user is obese, this function measures its severity (based on classes 1, 2 and 3)
+ * Will not be executed if the user is not obese!
  * @returns {String} - the obesity class
  */
 function determineObesityClass(){
