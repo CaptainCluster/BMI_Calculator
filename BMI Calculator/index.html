@@ -7,39 +7,39 @@
   <meta name="description" content="">
   <link rel="stylesheet" href="styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
   <script src="./src/index.js" type="module"></script>
-
-  <div>
-    <button class="unitButton" id="buttonMetric">Metric</button>
-    <button class="unitButton" id="buttonUS">US</button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  
+  <div class="calculatorBox">
+    <div>
+      <button class="unitButton" id="button-metric">Metric</button>
+      <button class="unitButton" id="button-US">US</button>
+    </div>
+  
+    <div>
+      <label for="height-input1" id="height">Your Height</label>
+      <input type="text" class="form-control" id="height-input1" placeholder="Your height [m]">
+      <input type="text" class="form-control" id="height-input2" placeholder="Your height [cm]">
+    </div>
+  
+    <div>
+      <label for="weight-input">Your Weight</label>
+      <f id="weight"></f>
+      <input type="text" class="form-control" id="weight-input" placeholder="Your weight [kg]">
+    </div>
+    <button class="btn btn-primary" id="submit-button" type="submit">Submit results</button>
+  
+    <div class="outputBox">
+      <p id="default-text">The results will be displayed here.</p>
+      <p id="results"></p>
+      <p id="weight-suggestion"></p>
+      <p id="weight-comparison"></p>
+      <p id="error-message"></p>
+    </div>
   </div>
-
-  <div>
-    <label for="heightInput1" id="height">Your height [m]</label>
-    <input type="text" class="inputArea" id="heightInput1">
-    <label for="heightInput2" id="heightLesser">[cm]</label>
-    <input type="text" class="inputArea" id="heightInput2">
-  </div>
-
-  <div>
-    <label for="weightInput">Your Weight</label>
-    <f id="weight"></f>
-    <input type="text" class="inputArea" id="weightInput">
-  </div>
-
-  <button id="submitButton" class="submitButton">Submit results</button>
-
-  <div class="outputBox">
-    <h1 id="defaultText">The results will be displayed here.</h1>
-    <h1 id="results"></h1>
-    <h1 id="weightSuggestion"></h1>
-    <h1 id="weightComparison"></h1>
-    <h1 id="errorMessage"></h1>
-  </div>
+  
 </body>
 </html>

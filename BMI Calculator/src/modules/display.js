@@ -5,16 +5,13 @@
 
 import { user } from "../user.js";
 import { config } from "../config.js";
+import { mainErrorProcess } from "./errorHandling.js";
 
-/**
- * @description The button shows a visual response to the user
- * @param {buttonHtmlTag} submitButton - The html button element that the user can press
- */
-function submitButtonVisualResponse(submitButton){
-    submitButton.classList.add("clicked");
-    setTimeout(() => { submitButton.classList.remove("clicked"); }, config.BUTTON_CLICKED_DURATION);
-}
+
+
  /**
+  * @description - When the user presses one of the buttons (US or metric), that button will change
+  * color to help the user understand which one he has selected.
   * @param {button} chosenButton 
   * @param {button} notChosenButton 
   */
@@ -28,23 +25,27 @@ function measurementUnitButtonVisualResponse(chosenButton, notChosenButton){
  * @param {Array} unitList - Contains the strings to be displayed in HTML
  */
 function changeMeasuresHTML(unitList){
-    //Changing the unit symbols in the HTML to make the program more easy to use
-    let heightText = document.getElementById("height");
-    let lesserHeightText = document.getElementById("heightLesser");
-    let weightText = document.getElementById("weight");
+    try{
+        //Changing the unit symbols in the HTML to make the program more easy to use
+        const heightInputUpperHolder = document.getElementById("height-input1");
+        const heightInputLesserHolder = document.getElementById("height-input2");
+        const weightInputHolder = document.getElementById("weight-input");
 
-    heightText.textContent = "Your height " + unitList[0];
-    lesserHeightText.textContent = unitList[1];
-    weightText.textContent = unitList[2];
+        heightInputUpperHolder.placeholder = "Your height " + unitList[0];
+        heightInputLesserHolder.placeholder = "Your height " + unitList[1];
+        weightInputHolder.placeholder = "Your weight " + unitList[2];
+    } catch(error){
+        mainErrorProcess(error);
+    }
 }
 
 /**
- * @description - Displays the results based on the user's BMI
+ * @description - Displays the results based on the user's BMI (in a h5 tag)
  */
 function displayResults(){
-    //Showing the results to the user in the h1 tag 
     const resultDisplay = document.getElementById("results");
     try{
+        //Checking if the user has an obesity class. If they do, it will be displayed among the other results.
         if(user.obesityClass == config.STRING_UNDEFINED){
             resultDisplay.textContent = "Your BMI: " + user.bodyMassIndex.toFixed(config.BMI_DECIMAL) + "  ==>  " + user.status; 
         } else{
@@ -55,11 +56,29 @@ function displayResults(){
         } else{
             resultDisplay.style.color = "red"; //"Unhealthy" BMI ==> red text
         }
-        const defaultTextElement = document.getElementById("defaultText");
+        const defaultTextElement = document.getElementById("default-text");
         defaultTextElement.textContent = "";
     } catch(error){
-        resultDisplay.textContent = "The program ran into the following error: " +  error.message;
+        mainErrorProcess(error);
     }
 }
 
-export { submitButtonVisualResponse, measurementUnitButtonVisualResponse, changeMeasuresHTML, displayResults }
+/**
+ * @description - When the user changes the measurement units, the current inputs will be removed
+ */
+function resetUserInputs(){
+    try{
+        const heightInputUpperHolder = document.getElementById("height-input1");
+        const heightInputLesserHolder = document.getElementById("height-input2");
+        const weightInputHolder = document.getElementById("weight-input");
+        //Wiping off the user input
+        heightInputUpperHolder.value = "";
+        heightInputLesserHolder.value = "";
+        weightInputHolder.value = "";
+    }
+    catch(error){
+        mainErrorProcess(error);
+    }
+}
+
+export { measurementUnitButtonVisualResponse, changeMeasuresHTML, displayResults, resetUserInputs }

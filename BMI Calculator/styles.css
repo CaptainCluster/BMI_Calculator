@@ -1,18 +1,26 @@
 body {
-  background-color: #f2f2f2;
+  display: grid;
+  place-items: center;
   font-family: Arial, sans-serif;
   color: #333;
+  padding: 20px;
 }
 
 div {
   margin-bottom: 10px;
 }
 
+p{
+  font-size: 16px;
+}
+
 .unitButton {
   background-color: #4caf50;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 10px;
+  margin-top: 5px;
+  width: 70px;
   font-size: 16px;
   cursor: pointer;
 }
@@ -21,18 +29,17 @@ div {
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  width: 40px;
+  width: 50px;
   text-align: center;
 }
 
-.submitButton {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+.form-control {
+  width: 50px;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 5px;
 }
+
 
 .selected {
   background-color: darkgreen;
@@ -43,13 +50,30 @@ div {
 }
 
 .outputBox {
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+  display: grid;
+  place-items: center;
   padding: 10px;
   margin-top: 10px;
-  font-size: 10px;
+}
+
+.calculatorBox {
+  width: 350px;
+  border: 1px solid #ccc;
+  display: grid;
+  place-items: center;
+  background-color: #f9f9f9;
+
 }
 
 #errorMessage{
   color: red;
+}
+
+#submitButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
