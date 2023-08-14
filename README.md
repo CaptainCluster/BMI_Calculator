@@ -6,12 +6,6 @@ In order to use the program, you need to have Bootstrap installed.
 
 Run the following command in your Command Prompt:   ```npm i bootstrap@5.3.1```
 
-Then add these to your HTML file:
-
-```<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">```
-
-```<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>```
-
 Now you should be able to enjoy what Bootstrap has to offer :)
 
 [You can read more about Bootstrap here!](https://getbootstrap.com/)
