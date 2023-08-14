@@ -1,5 +1,6 @@
 # BMI_Calculator
-A fully functional BMI calculator that works with both the metric and the imperial system.
+
+A flexible and functional BMI calculator that works with both the metric system and the imperial system. Gives both results and feedback based on the inputs given by the user (height and weight). 
 
 ---
 In order to use the program, you need to have Bootstrap installed. 
