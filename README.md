@@ -1,27 +1,53 @@
 # BMI_Calculator
-A fully functional BMI calculator that works with both the metric system and the US units.
+A fully functional BMI calculator that works with both the metric and the imperial system.
+
+---
+In order to use the program, you need to have Bootstrap installed. 
+
+Run the following command in your Command Prompt:   ```npm i bootstrap@5.3.1```
+
+Then add these to your HTML file:
+
+```<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">```
+
+```<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>```
+
+Now you should be able to enjoy what Bootstrap has to offer :)
+
+[You can read more about Bootstrap here!](https://getbootstrap.com/)
+---
+
 Here are the simple instructions:
-1. Type in your height (meters/feet and centimeters/inches have separate boxes).
-2. Type in your weight in either kilograms or pounds, depending on the units you use.
-3. Submit the results and your BMI will be displayed underneath the button you pressed.
+1. Choose your measurement system by pressing one of the buttons at the top.
+2. Type in your height (meters/feet and centimeters/inches have separate boxes).
+3. Type in your weight in either kilograms or pounds, depending on the system you use.
+4. Submit the results and your BMI will be displayed at the bottom.
+---
 
 There are four different states: underweight, healthy, overweight and obese.
 The "obese" state has three obesity classes to determine how severe the obesity is.
 
-The program is will suggest the user a target weight to reach as a goal in order to
-be considered "healthy".  
+The program is will suggest the user a target weight that is the closest to the 
+user's current height and is considered healthy. It also goes into detail, displaying
+how much weight the user should either gain or lose.
 
-When using metric units...
+---
+Some images
 
-<img width="542" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/e99541e0-520d-4d3d-b14c-cb77ab312588">
+<img width="305" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/4953526e-a205-451f-8d65-a7bf8ca8bc2d">
 
-When using imperial units... 
+<img width="305" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/f05f030d-4046-408c-a71d-e6ad0e1d7dce">
 
-<img width="614" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/4699eb12-a010-4ae7-bd4a-63c9a4a9615a">
+<img width="302" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/97cf8e21-ede8-4fa0-b3e7-66ec2c3b524c">
 
-In order to make the program more flexible, setting the height with only one of the boxes works.
+<img width="305" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/5582ad08-6ae4-4671-8109-4eae87547515">
 
-<img width="383" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/c47ee0e7-5c61-440f-b088-59912d442b09">
+<img width="299" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/50224798-550e-4b5d-9925-447a428df388">
+
+
+
+
+
 
 
 
