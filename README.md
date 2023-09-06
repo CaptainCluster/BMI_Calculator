@@ -1,21 +1,22 @@
 # BMI_Calculator
 A flexible and functional BMI calculator that works with both the metric system and the imperial system. Gives both results and feedback based on the inputs given by the user (height and weight). 
+
+Dependencies
 ---
 In order to use the program, you need to have Bootstrap installed. 
 
-Run the following command in your Command Prompt:  
+ ```npm i bootstrap@5.3.1```
 
-```npm i bootstrap@5.3.1```
+[You can read more about Bootstrap here.](https://getbootstrap.com/)
 
-Now you should be able to enjoy what Bootstrap has to offer :)
-
-[You can read more about Bootstrap here!](https://getbootstrap.com/)
+Instructions
 ---
-Here are the simple instructions:
 1. Choose your measurement system by pressing one of the buttons at the top.
 2. Type in your height (meters/feet and centimeters/inches have separate boxes).
 3. Type in your weight in either kilograms or pounds, depending on the system you use.
 4. Submit the results and your BMI will be displayed at the bottom.
+
+Basic information
 ---
 There are four different states: underweight, healthy, overweight and obese.
 The "obese" state has three obesity classes to determine how severe the obesity is.
@@ -23,9 +24,9 @@ The "obese" state has three obesity classes to determine how severe the obesity 
 The program is will suggest the user a target weight that is the closest to the 
 user's current height and is considered healthy. It also goes into detail, displaying
 how much weight the user should either gain or lose.
----
-Some images
 
+Images
+---
 <img width="305" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/4953526e-a205-451f-8d65-a7bf8ca8bc2d">
 
 <img width="305" alt="image" src="https://github.com/CaptainCluster/BMI_Calculator/assets/121576355/f05f030d-4046-408c-a71d-e6ad0e1d7dce">
